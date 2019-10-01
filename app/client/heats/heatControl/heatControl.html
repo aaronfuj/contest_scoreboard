@@ -1,0 +1,109 @@
+<div>
+
+    <!-- Starting/Stopping heat  -->
+    <div ng-if="$ctrl.user.isAdmin" class="body-center" style="background-color: white;">
+
+        <div style="background-color: #d6d6d6; padding: 5px;">
+            <div style="display: inline-block; float: right;">
+                <label class="enable-heat-switch">
+                    <input type="checkbox"
+                           ng-model="$ctrl.heat.isActive"
+                           ng-disabled="$ctrl.heatChanging"
+                           ng-change="$ctrl.changeHeatStatus($ctrl.heat.isActive, $ctrl.heat._id)">
+                    <div class="slider round"></div>
+                </label>
+            </div>
+            <div style="display: inline-block; font-size: 24px;">
+                <span style="font-weight: 100;">STATUS </span>
+                <span ng-show="$ctrl.heat.isActive" style="font-weight: 700; color: #00ce00;">ACTIVE <i class="fa fa-eye"></i></span>
+                <span ng-show="!$ctrl.heat.isActive" style="font-weight: 700; color: #595959;">INACTIVE <i class="fa fa-eye-slash"></i></span>
+            </div>
+            <div style="display: inline-block;">
+                <form style="display: inline-block;">
+                    <button ng-disabled="$ctrl.heatChanging" ng-click="$ctrl.changeHeatStatus(!$ctrl.heat.isActive, $ctrl.heat._id)">{{$ctrl.heat.isActive ? 'Disable' : 'Enable'}}</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div style="padding: 5px;">
+            <div>
+                <span><strong>Timer</strong> {{$ctrl.timerValue}}</span>
+
+                <timer-control
+                        heat-id="$ctrl.heat._id"
+                        enabled="$ctrl.heat.isActive"
+                >
+                </timer-control>
+            </div>
+        </div>
+
+        <div>
+            <span style="display: block; background-color: #d6d6d6; padding: 5px;">Manage Riders</span>
+            <div style="padding: 5px;">
+                <div>
+                    <div ng-repeat="rider in $ctrl.heat.riders">
+                        <div style="display: inline-block; min-width: 20px; border: 1px solid black;"
+                             ng-style="{ 'background-color': rider.color }">&nbsp;</div>
+                        {{rider.rider.name}}
+                        <a href ng-click="$ctrl.removeRider(rider)"><i class="fa fa-close"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <form ng-submit="$ctrl.addRider($ctrl.selectedRider, $ctrl.selectedColor)">
+                        <div style="display: inline-block;" class="form-group">
+
+                            <div style="display: inline-block;">
+                                <label>Rider</label>
+                                <select ng-model="$ctrl.selectedRider" ng-options="rider.name disable when $ctrl.isRiderInHeat(rider) for rider in $ctrl.allRiders | orderBy:'name'" required>
+                                    <option value="">Select Rider</option>
+                                </select>
+                            </div>
+
+                            <div style="display: inline-block;">
+                                <label>Color</label>
+                                <select ng-model="$ctrl.selectedColor" ng-options="color.name disable when $ctrl.isColorUsedInHeat(color) for color in $ctrl.colors" required>
+                                    <option value="">Select Color</option>
+                                </select>
+                                <div style="margin: 5px; display: inline-block; min-width: 20px; border: 1px solid black;"
+                                     ng-style="{ 'background-color': $ctrl.selectedColor.value }">&nbsp;</div>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prev/Next Heats -->
+        <div ng-if="$ctrl.previousHeat || $ctrl.nextHeat">
+            <span style="display: block; background-color: #d6d6d6; padding: 5px;">Previous / Next Heats</span>
+            <div style="padding: 5px">
+                <table style="width: 100%;">
+                    <td style="text-align: left;">
+                        <div ng-if="$ctrl.previousHeat">
+                            <a href="#/heats/{{$ctrl.previousHeat._id}}/edit"><i class="fa fa-arrow-left"></i> Previous Heat</a>
+                            <div class="heat-header-sibling-heat-info" style="text-align: left;">
+                                <div>Heat: <a ng-href="#/heats/{{$ctrl.previousHeat._id}}/edit">{{$ctrl.previousHeat.name}}</a></div>
+                                <div>Round: <a ng-href="#/rounds/{{$ctrl.previousHeat.round._id}}">{{$ctrl.previousHeat.round.name}}</a></div>
+                                <div>Division: <a ng-href="#/divisions/{{$ctrl.previousHeat.round.division._id}}">{{$ctrl.previousHeat.round.division.name}}</a></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: right;">
+                        <div ng-if="$ctrl.nextHeat">
+                            <a href="#/heats/{{$ctrl.nextHeat._id}}/edit">Next Heat <i class="fa fa-arrow-right"></i></a>
+                            <div class="heat-header-sibling-heat-info" style="text-align: right;">
+                                <div>Heat: <a ng-href="#/heats/{{$ctrl.nextHeat._id}}/edit">{{$ctrl.nextHeat.name}}</a></div>
+                                <div>Round: <a ng-href="#/rounds/{{$ctrl.nextHeat.round._id}}">{{$ctrl.nextHeat.round.name}}</a></div>
+                                <div>Division: <a ng-href="#/divisions/{{$ctrl.nextHeat.round.division._id}}">{{$ctrl.nextHeat.round.division.name}}</a></div>
+                            </div>
+                        </div>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div ng-if="!activeHeats || activeHeats.length === 0">
+    <div class="no-active-heats">
+        <div class="no-active-heats-icon"><i class="fa fa-eye-slash"></i></div>
+        <span>There are no live heats at the moment.</span>
+        <span>Find results <a href="#/divisions">here</a>.</span>
+    </div>
+</div>
+
+<div ng-if="activeHeats && activeHeats.length > 0">
+    <div ng-repeat="heat in activeHeats">
+        <heat-view
+                heat-id="heat._id"
+                user="user"
+                isAdmin="user.isAdmin"
+                manual-refresh="manualRefresh"
+                is-live="true"
+        >
+        </heat-view>
+        <div class="body-center">
+            <div ng-if="heat.previousHeat">
+                <span style="font-style: italic">Previous Heat</span>
+                <heat-view-result-header
+                        heat="heat.previousHeat"
+                >
+                </heat-view-result-header>
+                <heat-result heat="heat.previousHeat"
+                             top-results="heat.previousHeat.results"
+                             rider-ranks="heat.previousHeat.riderRanks"
+                             is-admin="user.isAdmin"
+                             show-header="{false}"
+                >
+                </heat-result>
+            </div>
+            <div ng-if="heat.nextHeat">
+                <span style="font-style: italic">Next Heat</span>
+                <heat-view-result-header
+                        heat="heat.nextHeat"
+                >
+                </heat-view-result-header>
+                <div ng-repeat="rider in heat.nextHeat.riders" class="heat-result-rider-result">
+                    <table style="height: 100%; width: 100%;">
+                        <tr>
+                            <td style="width: 15px;" ng-style="{ 'background-color': rider.color }">&nbsp;</td>
+                            <td style="padding: 5px;">
+                                <span class="heat-result-rider-name">{{rider.rider.name | uppercase}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,49 @@
+{
+  "name": "node-authentication",
+  "main": "server.js",
+  "dependencies": {
+    "angular": "~1.5.11",
+    "angular-route": "~1.5.11",
+    "angular-touch": "~1.5.11",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "~1.0.0",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.0",
+    "css-loader": "^0.25.0",
+    "ejs": "~0.8.5",
+    "express": "~4.4.3",
+    "express-session": "~1.0.0",
+    "lodash": "^4.16.4",
+    "method-override": "~1.0.0",
+    "mongoose": "~4.4.8",
+    "morgan": "~1.0.0",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.5.1",
+    "sortablejs": "^1.5.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2"
+  },
+  "engines": {
+    "node": "4.2.6"
+  },
+  "scripts": {
+    "postinstall": "if [ $BUILD_ASSETS ]; then npm run build; fi",
+    "wp": "node node_modules/.bin/webpack-dev-server --content-base app",
+    "bundle": "webpack",
+    "build": "NODE_ENV=production webpack --hide-modules --config webpack.production.config.js",
+    "start": "NODE_ENV=development node server.js",
+    "seedusers": "NODE_ENV=development node seed_users.js",
+    "start:production": "NODE_ENV=production node server.js"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.2.0",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "lodash": "^4.15.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}

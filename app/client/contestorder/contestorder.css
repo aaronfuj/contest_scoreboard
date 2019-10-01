@@ -1,0 +1,78 @@
+.heat-order-header {
+    background-color: #1DE9B6;
+    color: white;
+    font-size: 24px;
+}
+
+.heat-order-button {
+    background-color: #1DE9B6;
+    color: black;
+}
+
+.heat-order-switch-heat-button {
+    background-color: #118669;
+    color: white;
+}
+
+.heat-order-division {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.heat-order-round {
+    font-size: 24px;
+}
+
+.heat-order-round-heat-count {
+    font-size: 24px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.heat-order-list {
+    padding-left: 0;
+}
+
+.heat-order-list li {
+    padding: 5px;
+}
+
+.grab-handle {
+    padding: 5px;
+    cursor: move;
+}
+
+.highlight-round {
+    background-color: #c7ffc9 !important;
+}
+
+.highlight-heat-name {
+    background-color: #000 !important;
+}
+
+.heat-order-list-item {
+    font-size: 18px;
+}
+
+.heat-order-list li:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.heat-order-list li:nth-child(odd) {
+    background-color: white;
+}
+
+.heat-order-table table tbody tr td:last-child {
+    /** width:100%; */
+}
+
+.heat-order-table-cell{
+    vertical-align: top;
+    width: 50%;
+}
+
+#heatInfo {
+    background-color: #EBEBEB;
+    padding: 5px;
+    width: 100%;
+}

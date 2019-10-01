@@ -1,0 +1,11 @@
+<div>
+    <form>
+        <input type="number" placeholder="time in minutes" ng-model="timerMinutes" required>
+        <button ng-click="$ctrl.setTimer(timerMinutes)">Set</button>
+    </form>
+    <div>
+        <a href ng-click="$ctrl.startTimer()"><i class="fa fa-play-circle-o fa-2x"></i></a>
+        <a href ng-click="$ctrl.pauseTimer()"><i class="fa fa-pause-circle-o fa-2x"></i></a>
+        <a href ng-click="$ctrl.stopTimer()"><i class="fa fa-stop-circle-o fa-2x"></i></a>
+    </div>
+</div>

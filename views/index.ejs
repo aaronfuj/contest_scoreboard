@@ -1,0 +1,36 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contest Scoreboard</title>
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../stylesheets/style.css" type="text/css">
+    <!--
+    <style>
+        body        { padding-top:80px; }
+    </style>
+    -->
+</head>
+<body style="height: 100vh;">
+<div class="text-center" style="height: 100%;">
+
+    <!--
+    <div class="jumbotron text-center">
+        <h1><span class="fa fa-lock"></span> Judge Authentication</h1>
+
+        <p>Login or Register with:</p>
+
+        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
+        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+    </div>
+    -->
+
+    <a href="/login" class="btn btn-default home-button home-login-button"><span class="fa fa-user"></span> Judge Login</a>
+    <a href="/live" class="btn btn-default home-button home-spectate-button"><span class="fa fa-eye"></span> Spectator View</a>
+
+</div>
+</body>
+</html>

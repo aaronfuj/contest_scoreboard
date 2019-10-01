@@ -1,0 +1,45 @@
+================================
+New Tiebreaking
+================================
+Get the scoring fields for all riders (Based on X scores)
+Find all tied riders
+  Current counter is Y (starts at 1)
+  As long as there are tied riders continue
+    Try decremental counting
+      If X-Y > 0
+        Use the value Y as the top X-Y amounts of scores needed as long as X-Y > 0
+        Check for tie
+          Break if found
+    Try incremental counting
+      Use X+Y scores
+      Check for tie
+        Break if found
+    Increment Y
+
+
+
+================================
+Tiebreaking old way
+================================
+Sort riders by highest score
+
+Iterate through riders
+  If this riders score is the same as the last processed rider
+    If we already have another rider in a tie, then store this rider as part of the tie and use the 'overall rank' as its value
+    Otherwise, start a running tie count to keep track of these two riders
+
+  Otherwise, if this rider is currently in a tie (and doesn't have the same score) - This actually means that the current rider is not in a tie, but instead the previous rider was tied so lets calculate those previous riders
+    Sum up the rank of all the tied riders
+    Divide the sum by the number of tied riders
+    Store this rank as the true value for all of the tied riders
+    Reset the collection of tied riders
+    Reset that there is no tie anymore
+    
+    Set the current riders rank to be the overall rank (since this rider had nothing to do with the prev)
+
+  Otherwise, this rider seems fine (for now)
+    Set this riders rank to be whatever the next rank is
+
+  Iterate the overall rank
+  Save what this riders score was as the previous score
+  Save what this riders ID was as the previous id

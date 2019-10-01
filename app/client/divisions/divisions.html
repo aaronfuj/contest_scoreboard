@@ -1,0 +1,34 @@
+<cs-loader ng-if="isLoading"
+>
+</cs-loader>
+<div ng-if="!isLoading">
+    <div class="division-header">
+        <div class="body-center page-sub-header">Divisions</div>
+    </div>
+
+    <div class="mgmt-content">
+        <div class="body-center" style="padding: 0 5px;">
+            <div ng-repeat="division in divisions">
+                <div class="division-subheader-heat">
+                    <a ng-href="#/divisions/{{division._id}}">{{division.name}}</a>
+                    <span ng-if="user.isAdmin"><a href ng-click="deleteDivision(division)">Delete? <i class="fa fa-trash"></i></a></span>
+                </div>
+
+                <heat-result ng-repeat="heat in getHeats(division._id)"
+                             ng-if="heat.riders && heat.riders.length > 0"
+                             heat="heat"
+                             top-results="resultsPerHeatId[heat._id]"
+                             rider-ranks="riderRanksPerHeatId[heat._id]"
+                             is-admin="user.isAdmin"
+                >
+                </heat-result>
+            </div>
+
+            <divisions-creator ng-if="user.isAdmin"
+                               user="user"
+                               on-divisions-added="onDivisionsAdded(divisions)"
+            ></divisions-creator>
+        </div>
+
+    </div>
+</div>

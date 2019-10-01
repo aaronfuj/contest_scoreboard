@@ -1,0 +1,18 @@
+<div class="heat-header">
+    <table class="body-center" style="width: 100%;">
+        <tr>
+            <td>
+                <div class="heat-header-text">
+                    <span style="font-weight: 100;">TIME: </span> {{$ctrl.timerValue}}
+                </div>
+            </td>
+            <td>
+                <div class="heat-header-active-heat-info">
+                    <div>Heat: <a ng-href="#/heats/{{$ctrl.heat._id}}">{{$ctrl.heat.name}}</a></div>
+                    <div>Round: <a ng-href="#/rounds/{{$ctrl.heat.round._id}}">{{$ctrl.heat.round.name}}</a></div>
+                    <div>Division: <a ng-href="#/divisions/{{$ctrl.heat.round.division._id}}">{{$ctrl.heat.round.division.name}}</a></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,37 @@
+<div class="navigation-header">
+    <div class="navigation-hamburger">
+        <button class="navigation-hamburger-btn" ng-click="$ctrl.setClicked(true)"><i class="fa fa-bars" aria-hidden="true"></i></button>
+    </div>
+    <div class="navigation-header-title">{{headerValue}}</div>
+</div>
+<div class="navigation-links" ng-class="$ctrl.clicked ? 'open' : 'closed'">
+    <button class="navigation-close-btn" ng-click="$ctrl.setClicked(false)"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+    <ul ng-if="$ctrl.user.isAdmin || $ctrl.user.isJudge">
+        <li><a href="#/" ng-click="$ctrl.setClicked(false)">Clipboard</a></li>
+        <li><a href="#/viewer" ng-click="$ctrl.setClicked(false)">Live Score Tracker</a></li>
+        <li><a href="#/divisions" ng-click="$ctrl.setClicked(false)">Divisions / Results</a>
+            <ul>
+                <li class="navigation-links-sub-header" ng-repeat="division in $ctrl.divisions"><a ng-href="#/divisions/{{division._id}}" ng-click="$ctrl.setClicked(false)">{{division.name}}</a></li>
+            </ul>
+        </li>
+        <li><a href="#/riders" ng-if="$ctrl.user.isAdmin" ng-click="$ctrl.setClicked(false)">Riders</a></li>
+        <li><a href="#/activeheats" ng-if="$ctrl.user.isAdmin" ng-click="$ctrl.setClicked(false)">Change Heat</a></li>
+        <li><a href="#/contestorder" ng-click="$ctrl.setClicked(false)">Contest Order</a></li>
+        <li><a href="#/settings" ng-if="$ctrl.user.isAdmin" ng-click="$ctrl.setClicked(false)">Settings</a></li>
+
+        <li ng-if="$ctrl.user.isAdmin"><a class="user" href="/signup" ng-click="$ctrl.setClicked(false)">User Management</a></li>
+        <li><a class="user" href="/logout" ng-click="$ctrl.setClicked(false)">Log out {{user.local.username}}</a></li>
+    </ul>
+    <ul ng-if="!$ctrl.user.role">
+        <li><a href="#/" ng-click="$ctrl.setClicked(false)">Live Score Tracker</a></li>
+        <li>
+            <a href="#/divisions" ng-click="$ctrl.setClicked(false)">Divisions / Results</a>
+            <ul>
+                <li class="navigation-links-sub-header" ng-repeat="division in $ctrl.divisions"><a ng-href="#/divisions/{{division._id}}" ng-click="$ctrl.setClicked(false)">{{division.name}}</a></li>
+            </ul>
+        </li>
+        <li><a href="#/contestorder" ng-click="$ctrl.setClicked(false)">Contest Order</a></li>
+        <li><a class="navigation-user" href="/login">Login</a></li>
+    </ul>
+</div>

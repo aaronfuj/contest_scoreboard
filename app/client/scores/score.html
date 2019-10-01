@@ -1,0 +1,74 @@
+<div ng-show="score != null">
+  <form>
+    <fieldset>
+      <table class="score-edit-table standard-table">
+        <tr>
+          <td class="label-cell"><label>Judge</label></td>
+          <td>{{score.judge.local.username}}</td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Heat</label></td>
+          <td>{{score.heat.name}}</td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Original Rider</label></td>
+          <td>
+            <div style="display: inline-block; min-width: 20px; border: 1px solid black;"
+                 ng-style="{ 'background-color': score.rider.color }">&nbsp;</div>
+            {{score.rider.name}}
+          </td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Updated Rider</label></td>
+          <td>
+            <div style="display: inline-block; min-width: 20px; border: 1px solid black;"
+                 ng-style="{ 'background-color': selectedRider.color }">&nbsp;</div>
+            <select ng-model="selectedRider" ng-options="rider.rider.name for rider in heatRiders | orderBy:'rider.name'" required>
+              <option value="">Select Rider</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Wave Number</label></td>
+          <td><input type="number"
+                     min="1" step="1"
+                     ng-model="score.waveNumber"
+                     required></td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Is Interference?</label></td>
+          <td><input type="checkbox" ng-model="score.isInterference"></td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Interference Type (major, minor)</label></td>
+          <td><input type="text" ng-model="score.interferenceType"></td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Direction (none, left, right)</label></td>
+          <td><input type="text" ng-model="score.direction"></td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Time</label></td>
+          <td>{{score.time | date:'medium'}}</td>
+        </tr>
+        <tr>
+          <td class="label-cell"><label>Value</label></td>
+          <td><input type="number"
+                     ng-model="score.value"
+                     min="0" max="10" step="0.1"
+                     placeholder="Score"
+                     required></td>
+        </tr>
+      </table>
+      <div class="score-edit-buttons">
+        <button class="btn" ng-click="updateScore(selectedRider.rider._id, score.waveNumber, score.direction, score.isInterference, score.interferenceType, score.value)" ><i class="fa fa-check"></i> Update</button>
+        <button class="btn" type="cancel" ng-click="back()"><i class="fa fa-times"></i> Cancel</button>
+        <button class="btn" ng-click="delete()"><i class="fa fa-trash"></i> Delete</button>
+      </div>
+    </fieldset>
+  </form>
+
+</div>
+<div ng-hide="score != null">
+  No score found that matches this id.
+</div>

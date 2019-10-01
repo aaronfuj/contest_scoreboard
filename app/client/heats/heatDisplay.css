@@ -1,0 +1,140 @@
+.score-table {
+    border-collapse: collapse;
+    width: 100%;
+
+    background-color: white;
+
+    margin: 0 auto;
+    max-width: 700px;
+    border-bottom: 1px solid #424242;
+}
+
+.score-table tr {
+    padding: 0;
+    margin: 0;
+}
+
+.score-table td {
+    border-right: 2px solid #424242;
+    border-left: 2px solid #424242;
+    border-top: none;
+    border-bottom: none;
+    text-align: right;
+    padding: 0 10px;
+    vertical-align: top;
+
+    color: #424242;
+}
+
+.score-table .rider-position {
+    background-color: white;
+}
+
+.score-table .rider-names {
+    font-weight: bold;
+    text-overflow: ellipsis;
+}
+
+.score-table .rider-names td {
+    font-weight: bold;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.score-table .rider-sub-total {
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.score-table .rider-sub-total-cell {
+    padding-bottom: 10px;
+}
+
+.score-table .sub-total-score {
+}
+
+.score-table .rider-total td {
+    color: black;
+    background-color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+
+.score-table .total-interference-count {
+    color: red;
+    font-weight: 200;
+}
+
+.score-table .last-score-label {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 200;
+}
+
+.score-table .last-score-value {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.score-table .rider-wins-needs {
+    font-style: italic;
+}
+
+.score-table .wins-needs-label {
+    font-size: 10px;
+}
+
+.score-table .wins-needs-score {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.score-table .rider-last-score td {
+    padding-bottom: 5px;
+}
+
+.score-table .rider-score-breakdown {
+    background-color: #f2f2f2;
+    padding-bottom: 10px;
+}
+
+.score-table .rider-score-breakdown-cell {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.score-table .half-column {
+    width: 50%;
+    padding: 0;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.score-table .full-column {
+    width: 100%;
+    padding: 0;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.score-table .scores-column {
+    color: #989898;
+}
+
+.score-table .col-high-wave-score {
+    /*background-color: #72cb04;*/
+    color: black;
+    font-weight: bold;
+}
+
+.score-table .col-bad-wave-score {
+    background-color: red;
+    color: white;
+}
+
+.score-table .col-ignored-wave-score {
+    background-color: #ffafa5;
+    color: white;
+    text-decoration: line-through;
+}

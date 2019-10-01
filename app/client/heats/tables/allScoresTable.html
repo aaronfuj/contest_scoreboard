@@ -1,0 +1,38 @@
+<div>
+    <h2>
+        <div style="height: 16px;" ng-style="{'background-color': $ctrl.heatRider.color}">&nbsp;</div>
+        <div>{{$ctrl.heatRider.rider.name | uppercase}}</div>
+    </h2>
+</div>
+<table class="viewer-table">
+    <thead>
+    <tr>
+        <th>Wave #</th>
+        <th ng-repeat="judge in $ctrl.judges">{{$ctrl.getJudgeName(judge, $index)}}</th>
+        <th>Sum</th>
+        <th>Avg</th>
+        <th>A. Sum</th>
+        <th>A. Avg</th>
+        <th>Result</th>
+        <th ng-show="$ctrl.enableLeftRightRule">L/R</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="tableScore in $ctrl.getViewableTableScores()"
+        ng-class="{'highlight-row' : tableScore.isHighScore, 'highlight-bad-row': tableScore.isInterference, 'highlight-ignored-row': tableScore.isIgnored}">
+        <td>{{tableScore.waveNumber}}</td>
+        <td ng-repeat="judgeScore in tableScore.judgeScores" ng-switch="$ctrl.isAdmin">
+            <a ng-switch-when="true" ng-show="judgeScore.scoreId" ng-href="#/scores/{{judgeScore.scoreId}}">
+                {{judgeScore.value | number:2}}<span ng-if="judgeScore.isInterference">*</span>
+            </a>
+            <span ng-switch-default>{{judgeScore.value | number:2}}<span ng-if="judgeScore.isInterference">*</span></span>
+        </td>
+        <td>{{tableScore.total | number:2}}</td>
+        <td>{{tableScore.average | number:2}}</td>
+        <td>{{tableScore.adjustedTotal | number:2}}</td>
+        <td>{{tableScore.adjustedAverage | number:2}}</td>
+        <td>{{tableScore[$ctrl.HIGH_SCORE_FIELD] | number:2}}</td>
+        <td class="wave-direction" ng-show="$ctrl.enableLeftRightRule">{{$ctrl.parseDirection(tableScore.direction)}}</td>
+    </tr>
+    </tbody>
+</table>

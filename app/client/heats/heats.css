@@ -1,0 +1,28 @@
+.heat-header {
+    background-color: #595959;
+    color: white;
+}
+
+.heat-header-text {
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+.heat-header-sibling-heat-info {
+    padding-right: 5px;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+.heat-header-sibling-heat-info a {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.heat-header-sibling-heat-info a:hover {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+}

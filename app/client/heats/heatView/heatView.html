@@ -1,0 +1,53 @@
+<cs-loader ng-if="$ctrl.isInitialLoading"></cs-loader>
+<div ng-if="!$ctrl.isInitialLoading">
+    <heat-view-live-header
+            ng-if="$ctrl.isLive"
+            heat="$ctrl.heat"
+            timer-value="$ctrl.timerValue"
+    ></heat-view-live-header>
+    <heat-view-result-header
+            ng-if="!$ctrl.isLive"
+            user="$ctrl.user"
+            heat="$ctrl.heat"
+    >
+    </heat-view-result-header>
+
+    <div class="body-center">
+        <heat-display
+                enable-left-right-rule="$ctrl.enableLeftRightRule"
+                heat="$ctrl.heat"
+                max-score-count="$ctrl.maxScoreCount"
+                scores-needed="$ctrl.scoresNeeded"
+                table-scores-per-rider="$ctrl.tableScoresPerRider"
+                raw-table-scores-per-rider="$ctrl.rawTableScoresPerRider"
+                highest-table-scores-per-rider="$ctrl.highestTableScoresPerRider"
+                overall-results="$ctrl.overallResults"
+        ></heat-display>
+    </div>
+
+    <!-- Section for all the scores for each rider (from all judges combined) -->
+    <div style="padding-top: 10px; max-width: 700px; margin: 0 auto;">
+        <div ng-repeat="rider in $ctrl.heat.riders" style="background-color: white; margin-bottom: 5px; border: 1px solid black;">
+
+            <viewer-scores-table
+                    ng-if="!$ctrl.allScores"
+                    enable-left-right-rule="$ctrl.enableLeftRightRule"
+                    judges="$ctrl.judges"
+                    table-scores-per-rider="$ctrl.tableScoresPerRider"
+                    heat-rider="rider"
+                    style="width: 100%;"
+            ></viewer-scores-table>
+
+            <all-scores-table
+                    ng-if="$ctrl.allScores"
+                    enable-left-right-rule="$ctrl.enableLeftRightRule"
+                    judges="$ctrl.judges"
+                    table-scores-per-rider="$ctrl.tableScoresPerRider"
+                    heat-rider="rider"
+                    is-admin="$ctrl.user.isAdmin"
+                    style="width: 100%;"
+            ></all-scores-table>
+
+        </div>
+    </div>
+</div>

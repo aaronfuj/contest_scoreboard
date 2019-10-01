@@ -1,0 +1,25 @@
+<div>
+    <div ng-repeat="heat in $ctrl.heats">
+        <div class="heat-header" ng-class="{'highlight-heat-name' : heat.isActive}">
+            <div class="heat-header-text">
+                <span style="font-weight: 100;">HEAT </span> <a href="#/heats/{{heat._id}}">{{heat.name}}</a>
+                <a ng-if="$ctrl.isAdmin" ng-href="#/heats/{{heat._id}}/edit"><i class="fa fa-cog"></i></a>
+                <a ng-if="heat.isActive" ng-href="#/viewer"><i class="fa fa-eye"></i></a>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div ng-repeat="rider in heat.riders" class="heat-result-rider-result">
+                    <table style="height: 100%; width: 100%;">
+                        <tr>
+                            <td style="width: 15px;" ng-style="{ 'background-color': rider.color }">&nbsp;</td>
+                            <td style="padding-left: 5px;">
+                                <span class="heat-result-rider-name">{{rider.rider.name | uppercase}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

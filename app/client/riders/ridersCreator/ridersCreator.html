@@ -1,0 +1,28 @@
+<div class="actions" ng-if="$ctrl.user.isAdmin">
+
+    <h2>Create Riders</h2>
+    <form ng-submit="$ctrl.createBulkRiders($ctrl.selectedDivision, $ctrl.bulkRiderNames)">
+        <div class="form-group">
+            <div>
+                <label>Riders</label>
+            </div>
+                    <textarea name="multiple-riders"
+                              rows="10"
+                              style="width: 100%;"
+                              ng-model="$ctrl.bulkRiderNames"
+                              ng-list="&#10;"
+                              ng-trim="false"
+                              required>
+                    </textarea>
+
+            <div>
+                <select ng-model="$ctrl.selectedDivision" ng-options="division.name for division in $ctrl.divisions" required>
+                    <option value="">Select Division</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn rider-button">Create</button>
+    </form>
+</div>

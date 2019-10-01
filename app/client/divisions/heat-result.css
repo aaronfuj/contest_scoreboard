@@ -1,0 +1,49 @@
+.heat-result-rider-result {
+    border:1px solid #ddd;
+    vertical-align: top;
+    margin: 2px 0;
+    background-color: white;
+}
+
+.heat-result-rider-total-label-cell {
+    width: 70px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 0;
+    font-weight: 200;
+}
+
+.heat-result-rider-total-value-cell {
+    width: 70px;
+    text-align: center;
+    font-weight: bold;
+    height: 100%;
+    background-color: #535353;
+    color: white;
+    padding: 0;
+}
+
+.heat-result-rider-name {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tableScoreLabelCell {
+    width: 70px;
+    text-align: center;
+    background-color: lightgray;
+    color: black;
+    padding: 0;
+}
+
+.tableScoreValueCell {
+    width: 70px;
+    text-align: center;
+    font-weight: bold;
+    height: 100%;
+    background-color: white;
+    color: black;
+    padding: 0;
+}

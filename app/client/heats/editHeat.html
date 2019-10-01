@@ -1,0 +1,40 @@
+<div>
+    <div class="heat-header" ng-if="user.isAdmin">
+        <table class="body-center" style="width: 100%;">
+            <tr>
+                <td>
+                    <div class="heat-header-text"><span style="font-weight: 100;">HEAT </span> {{heat.name}}
+                        <a ng-if="user.isAdmin" ng-href="#/heats/{{heat._id}}"><i class="fa fa-table"></i></a>
+                    </div>
+                </td>
+                <td>
+                    <div class="heat-header-active-heat-info">
+                        <div>Round: <a ng-href="#/rounds/{{heat.round._id}}">{{heat.round.name}}</a></div>
+                        <div>Division: <a ng-href="#/divisions/{{heat.round.division._id}}">{{heat.round.division.name}}</a></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <heat-control
+        heat-id="heat._id"
+        heat="heat"
+        previous-heat="previousHeat"
+        next-heat="nextHeat"
+        user="user"
+        is-admin="user.isAdmin"
+        on-riders-changed="onRidersUpdated(riders)"
+    >
+    </heat-control>
+
+    <heat-view
+        heat-id="heat._id"
+        user="user"
+        is-admin="user.isAdmin"
+        manual-refresh="manualRefresh"
+        all-scores="{ true }"
+    >
+    </heat-view>
+
+</div>

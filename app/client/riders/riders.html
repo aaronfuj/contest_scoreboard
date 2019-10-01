@@ -1,0 +1,61 @@
+<div>
+    <div class="rider-header">
+        <div class="body-center page-sub-header">Rider Divisions</div>
+    </div>
+
+    <div class="mgmt-content body-center">
+        <ul class="round-navbar">
+            <li ng-repeat="division in divisions"><a ng-class="{selected: isSelected(division)}" ng-click="selectDivision(division)">{{division.name}}</a></li>
+        </ul>
+
+        <table class="standard-table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Division</th>
+                <th ng-if="user.isAdmin"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="rider in filteredRiders">
+                <td>{{rider.name}}</td>
+                <td>
+                    <a ng-href="#/divisions/{{selectedDivision._id}}">{{createDivisionString(rider.divisions)}}</a>
+                </td>
+                <td ng-if="user.isAdmin"><a href ng-click="removeRider(rider._id)">Remove</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <riders-creator ng-if="user.isAdmin"
+                        user="user"
+                        divisions="divisions"
+                        selected-division="selectedDivision"
+                        on-riders-added="onRidersAdded(division, riders)">
+        </riders-creator>
+
+        <!--<div class="actions" ng-if="user.isAdmin">-->
+
+            <!--<h2>Create Riders</h2>-->
+            <!--<form ng-submit="createBulkRiders(selectedDivision, bulkRiderNames)">-->
+                <!--<div class="form-group">-->
+                    <!--<div>-->
+                        <!--<label>Riders</label>-->
+                    <!--</div>-->
+                    <!--<textarea name="multiple-riders"rows="10" style="width: 100%;" ng-model="bulkRiderNames" ng-list="&#10;" ng-trim="false" required>-->
+                    <!--</textarea>-->
+
+                    <!--<div>-->
+                        <!--<select ng-model="selectedDivision" ng-options="division.name for division in divisions" required>-->
+                            <!--<option value="">Select Division</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+                <!--<button type="submit" class="btn rider-button">Create</button>-->
+            <!--</form>-->
+        <!--</div>-->
+    </div>
+</div>

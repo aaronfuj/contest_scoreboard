@@ -1,0 +1,17 @@
+.active-heats-header {
+    background-color: #1DE9B6;
+    color: black;
+    font-size: 24px;
+}
+
+.active-heats-button {
+    background-color: #1DE9B6;
+    color: black;
+}
+
+
+#heatInfo {
+    background-color: #EBEBEB;
+    padding: 5px;
+    width: 100%;
+}

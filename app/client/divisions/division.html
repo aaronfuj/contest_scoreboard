@@ -1,0 +1,44 @@
+<cs-loader ng-if="isLoading"
+>
+</cs-loader>
+<div ng-if="!isLoading">
+    <div class="division-header">
+        <div class="body-center page-sub-header">{{division.name}}</div>
+    </div>
+
+    <div class="mgmt-content">
+        <div class="navbar-container">
+            <ul class="round-navbar body-center">
+                <li ng-repeat="round in division.rounds"><a ng-class="{selected: isSelected(round)}" ng-click="selectRound(round)">{{round.name}}</a></li>
+            </ul>
+        </div>
+
+        <div class="body-center" ng-swipe-right="selectPreviousRound()" ng-swipe-left="selectNextRound()">
+            <div style="margin: 0 5px 5px; vertical-align: top; padding-bottom: 5px;">
+                <div ng-if="user.isAdmin && selectedRound._id">
+                    <span style="font-weight: 100;">ROUND </span><a ng-href="#/rounds/{{selectedRound._id}}">{{selectedRound.name}}</a>
+                    <a ng-href="#/rounds/{{selectedRound._id}}"><i class="fa fa-cog"></i></a>
+                    <a href ng-click="removeRound(selectedRound._id)"><i class="fa fa-trash"></i></a>
+                </div>
+
+                <heat-result ng-repeat="heat in selectedRound.heats"
+                             heat="heat"
+                             top-results="resultsPerHeatId[heat._id]"
+                             rider-ranks="riderRanksPerHeatId[heat._id]"
+                             is-admin="user.isAdmin"
+                >
+                </heat-result>
+
+            </div>
+            <div class="actions" ng-if="user.isAdmin">
+                <rounds-creator user="user"
+                                division-id="division._id"
+                                on-rounds-added="onRoundsAdded(rounds)"
+                ></rounds-creator>
+                <h2>Create Riders?</h2>
+                <div>Go to <a href="#/riders">Riders page.</a></div>
+            </div>
+        </div>
+
+    </div>
+</div>

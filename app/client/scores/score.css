@@ -1,0 +1,11 @@
+.score-edit-table {
+    width: 100%;
+}
+.score-edit-table .label-cell {
+    text-align: right;
+}
+
+.score-edit-buttons {
+    width: 100%;
+    text-align: center;
+}

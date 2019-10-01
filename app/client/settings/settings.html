@@ -1,0 +1,55 @@
+<div class="settings-header">
+    <div class="body-center page-sub-header">Update Settings</div>
+</div>
+<div class="mgmt-content body-center">
+    <form ng-submit="updateSettings()">
+        <div class="form-group">
+            <table class="standard-table" style="width: 100%;">
+                <tr>
+                    <td>
+                        <label>Default Wave Count</label>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" ng-model="waveCount" ng-disabled="!user.isAdmin">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Enable Left/Right Rule</label>
+                    </td>
+                    <td>
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="enableLeftRightRule" ng-disabled="!user.isAdmin">Enable</label>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Max Wave Count (-1 for no wave count)</label>
+                    </td>
+                    <td>
+                        <!-- Disabled due to not being completely hooked up -->
+                        <input type="number" class="form-control" ng-model="maxWaveCount" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Scoring Window Time (Seconds)</label>
+                    </td>
+                    <td>
+                        <!-- Disabled due to not being completely hooked up -->
+                        <input type="number" class="form-control" ng-model="scoreWindowSeconds" disabled>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="actions">
+            <button type="submit" class="btn settings-button" ng-disabled="!user.isAdmin">Save</button>
+        </div>
+
+    </form>
+
+    <div>{{message}}</div>
+</div>

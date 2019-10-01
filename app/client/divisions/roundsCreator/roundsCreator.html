@@ -1,0 +1,20 @@
+<div class="actions" ng-if="$ctrl.user.isAdmin">
+    <h2>Create a New Round(s)</h2>
+    <form ng-submit="$ctrl.createBulkRounds($ctrl.bulkRoundNames)">
+        <div class="form-group">
+            <div>
+                <label>Round</label>
+            </div>
+            <textarea name="multiple-rounds"
+                      rows="5"
+                      style="width: 100%;"
+                      ng-model="$ctrl.bulkRoundNames"
+                      ng-list="&#10;"
+                      ng-trim="false"
+                      required>
+            </textarea>
+        </div>
+
+        <button type="submit" class="btn division-button">Create</button>
+    </form>
+</div>

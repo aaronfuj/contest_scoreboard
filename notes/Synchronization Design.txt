@@ -1,0 +1,40 @@
+Within a heat, there is a wave number for every score, this wave number starts at 0
+
+1. Judge submits score to server.
+2. Server receives the score and marks it with a timestamp.
+3. Server uses the score information to get the heat and rider info, then queries for the scores associated with this rider in this heat
+4. If this rider has no scores, then it will take the wave number last used in this heat
+
+If the rider has scores
+  Get all the relevant scores by checking the last X amount of time for the scores
+  For those scores, find the ones submitted by this judge
+
+  If this judge did submit a score within this period
+    Get the last score submitted by this judge
+    Get the waves that have been submitted by everyone else other than this judge
+
+    If someone else submitted a newer wave
+      Use that newer wave
+    Otherwise
+      Create a new wave number and use that (this is the first judge to submit the score)
+
+  Otherwise if this judge hasn't submitted anything during this period
+    If someone else submitted something during this period
+      Use the earliest wave number
+    Otherwise nobody else submitted anything either
+      Use a new wave number
+
+Otherwise the rider has no scores
+  Use a new wave number
+
+
+
+
+
+===============================
+
+Different Scenarios
+1. Judge and Server start fresh with no scores for anyone
+2. Server is running, Judge refreshes page to start initialized
+3. Judge misses a score, is now unsynchronizes
+

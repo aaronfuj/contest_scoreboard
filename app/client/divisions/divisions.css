@@ -1,0 +1,31 @@
+.division-header {
+    background-color: #2196F3;
+    color: white;
+    font-size: 24px;
+}
+
+.division-button {
+    background-color: #2196F3;
+    color: white;
+}
+
+/*.division-subheader {*/
+    /*background-color: #BBDEFB;*/
+    /*border-radius: 3px 3px 0 0;*/
+    /*color: black;*/
+    /*margin: 0px;*/
+    /*padding: 10px;*/
+/*}*/
+
+/*.division-subheader a {*/
+    /*color: black;*/
+/*}*/
+
+.division-subheader-heat {
+    font-size: 24px;
+}
+
+.division-subheader-heat a {
+    text-decoration: underline;
+    color: black;
+}

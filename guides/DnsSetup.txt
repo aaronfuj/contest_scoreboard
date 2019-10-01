@@ -1,0 +1,16 @@
+Instructions for setting up a DNS so that the ip doesn't need to be typed:
+
+1. Make sure the router always recognizes that the particular computer should map to a particular IP, via mac address.
+2. Install dnsmasq so the computer can act as a DNS.
+
+        http://www.thekelleys.org.uk/dnsmasq/doc.html
+
+3. Configure dnsmsaq: https://passingcuriosity.com/2013/dnsmasq-dev-osx/
+4. Potentially alias the commands for starting/stopping
+
+I've used:
+
+alias start_dns="sudo launchctl stop homebrew.mxcl.dnsmasq"
+alias stop_dns="sudo launchctl stop homebrew.mxcl.dnsmasq"
+
+5. Configure the router to point to the IP of the computer as a DNS server

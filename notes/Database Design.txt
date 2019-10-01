@@ -1,0 +1,67 @@
+The database is designed to be a relational database with most tables being small in size and indexed by the most common search factors.
+
+Colors
+- Name
+- Color
+- Created at
+- Updated At
+
+Divisions
+- Name
+- Created At
+- Updated At
+
+Heats
+- Name
+- Round Id
+- Created At
+- Updated At
+
+Judges
+- Name
+- Username
+- Password
+- Created at
+- Updated at
+
+Riders
+- Name
+- Division Id
+- Created at
+- Updated at
+
+Rounds
+- Name
+- Division Id
+- Created At
+- Updated At
+
+Running Heats
+- Heat Id
+- Created At
+- Updated at
+
+Scores
+- Active Rider Id
+- Judge Id
+- Heat Id
+- Wave Number
+- Direction
+- Value
+- Is Valid Score
+- Is Interference
+- Is Corrected Score
+- Created At
+- Updated At
+
+Settings
+- Key
+- Value
+- Key Type
+- Created at
+- Updated at
+
+Removed Scores
+- Score Id
+- Created At
+- Updated At

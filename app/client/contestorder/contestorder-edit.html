@@ -1,0 +1,92 @@
+<!--<div class="heat-order-header">-->
+    <!--<div class="body-center page-sub-header">Current Heat(s)</div>-->
+<!--</div>-->
+
+<!--<div class="mgmt-content">-->
+    <!--<div class="body-center" style="padding: 0 5px;">-->
+        <!--<div ng-repeat="activeHeat in activeHeatsWithSiblings">-->
+            <!--<div style="text-align: center; font-size: 24px;">{{displayHeatString(activeHeat.currentHeat)}}</div>-->
+            <!--<table ng-if="user.isAdmin" style="width: 100%;">-->
+                <!--<td style="padding: 5px;">-->
+                    <!--<button ng-if="activeHeat.previousHeat"-->
+                            <!--ng-click="disableHeatAndEnableHeat(activeHeat.currentHeat._id, activeHeat.previousHeat._id)"-->
+                            <!--class="btn heat-order-switch-heat-button"-->
+                            <!--style="width: 100%;">Switch to Previous Heat</button>-->
+                <!--</td>-->
+                <!--<td style="padding: 5px;">-->
+                    <!--<button ng-if="activeHeat.nextHeat"-->
+                            <!--ng-click="disableHeatAndEnableHeat(activeHeat.currentHeat._id, activeHeat.nextHeat._id)"-->
+                            <!--class="btn heat-order-switch-heat-button"-->
+                            <!--style="width: 100%;">Switch to Next Heat</button>-->
+                <!--</td>-->
+            <!--</table>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="heat-order-header">
+    <div class="body-center page-sub-header">Re-Order Contest</div>
+</div>
+
+<div class="mgmt-content">
+    <div class="body-center" style="padding: 0 5px;">
+
+        <ul ng-sortable="sortableConf" class="heat-order-list">
+            <li ng-repeat="round in allRounds"
+                style="display: block;"
+                class="heat-order-list-item"
+                ng-class="{'highlight-round' : isActiveRound(round._id)}"
+                draggable="false"
+                style="clear: both;">
+                <table style="width:100%;">
+                    <tr>
+                        <td rowspan="2" style="padding: 0; width:100%;">
+                            <span class="grab-handle"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                            <span class="heat-order-division">{{round.division.name}}</span>
+                            <span class="heat-order-round">{{round.name}}</span>
+                            <span class="heat-order-round-heat-count">({{displayHeatCount(round._id)}})</span>
+                            <a ng-if="user.isAdmin" ng-href="#/rounds/{{round._id}}"><i class="fa fa-cog"></i></a>
+                        </td>
+                        <td>
+                            <a href ng-click="moveUp(round._id)"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                        <td>
+                            <a href ng-click="moveDown(round._id)"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        </td>
+                    <tr>
+
+                    </tr>
+                    <td></td>
+                    <td></td>
+
+
+
+                </table>
+            </li>
+        </ul>
+
+        <button class="btn heat-order-button" ng-click="saveOrder()">Save Order</button>
+        <span ng-show='hasToast' style="color: {{toast.color}};"><span ng-bind-html="toast.message"></span></span>
+
+        <!-- Show all of the heats that are 'active' and provide the means to change or remove the heat -->
+        <div id="heatInfo" ng-repeat="heat in heats">
+            <h1><a ng-href="#/heats/{{heat._id}}">{{::heat.name}}</a></h1>
+            <button ng-click="remove(heat._id)" ng-if="user.isAdmin"><i class="fa fa-ban"></i> Disable Heat</button>
+            <div>
+                <span>
+                    Division: <a ng-href="#/divisions/{{heat.round.division._id}}">{{::heat.round.division.name}}</a>,
+                    Round: <a ng-href="#/rounds/{{heat.round._id}}">{{::heat.round.name}}</a>
+                </span>
+            </div>
+
+
+            <!-- Show the details of the rider e.g. riders -->
+            <div>
+                <div ng-repeat="rider in heat.riders">
+                    <div style="margin: 5px; display: inline-block; min-width: 20px; border: 1px solid black; background-color: {{rider.color}}">&nbsp;</div>{{rider.rider.name}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

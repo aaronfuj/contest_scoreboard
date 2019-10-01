@@ -1,0 +1,73 @@
+<div class="heat-order-header">
+    <div class="body-center page-sub-header">Current Heat(s)</div>
+</div>
+
+<div class="mgmt-content">
+    <div class="body-center" style="padding: 0 5px;">
+        <cs-loader ng-if="isInitialLoading"></cs-loader>
+        <div ng-if="!isInitialLoading" ng-repeat="activeHeat in activeHeatsWithSiblings">
+
+            <heat-view-result-header
+                    heat="activeHeat.currentHeat"
+            >
+            </heat-view-result-header>
+            <div ng-repeat="rider in activeHeat.currentHeat.riders" class="heat-result-rider-result">
+                <table style="height: 100%; width: 100%;">
+                    <tr>
+                        <td style="width: 15px;" ng-style="{ 'background-color': rider.color }">&nbsp;</td>
+                        <td style="padding: 5px;">
+                            <span class="heat-result-rider-name">{{rider.rider.name | uppercase}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <table ng-if="user.isAdmin" style="width: 100%;">
+                <td style="padding: 5px;">
+                    <button ng-if="activeHeat.previousHeat"
+                            ng-click="disableHeatAndEnableHeat(activeHeat.currentHeat._id, activeHeat.previousHeat._id)"
+                            class="btn heat-order-switch-heat-button"
+                            style="width: 100%;">Switch to Previous Heat</button>
+                </td>
+                <td style="padding: 5px;">
+                    <button ng-if="activeHeat.nextHeat"
+                            ng-click="disableHeatAndEnableHeat(activeHeat.currentHeat._id, activeHeat.nextHeat._id)"
+                            class="btn heat-order-switch-heat-button"
+                            style="width: 100%;">Switch to Next Heat</button>
+                </td>
+            </table>
+        </div>
+        <div style="text-align: center; font-size: 24px;">
+            <span>Go to <a ng-href="#/viewer">Live Score Tracker <i class="fa fa-eye"></i></a></span>
+        </div>
+    </div>
+</div>
+
+<div class="heat-order-header">
+    <div class="body-center page-sub-header">Heat Order <a ng-if="user.isAdmin" ng-href="#/contestorder/edit"><i class="fa fa-cog"></i></a></div>
+</div>
+
+<div class="mgmt-content">
+    <div class="body-center" style="padding: 0 5px;">
+        <cs-loader ng-if="isInitialLoading"></cs-loader>
+        <ul ng-if="!isInitialLoading" class="heat-order-list">
+            <li ng-repeat="round in allRounds"
+                class="heat-order-list-item"
+                style="display: block;"
+                ng-class="{'highlight-round' : isActiveRound(round._id)}">
+                <a href ng-click="selectRound(round._id)"><i ng-if="round.heatsAreViewable" class="fa fa-minus-square-o"></i><i ng-if="!round.heatsAreViewable" class="fa fa-plus-square-o"></i></a>
+                <span class="heat-order-division">{{round.division.name}}</span>
+                <span class="heat-order-round"><a href ng-click="selectRound(round._id)">{{round.name}}</a></span>
+                <span class="heat-order-round-heat-count">({{displayHeatCount(round._id)}})</span>
+                <contestorder-round-component
+                        ng-if="isActiveRound(round.id) || round.heatsAreViewable"
+                        ng-init="heats = getHeatsForRoundId(round._id)"
+                        heats="heats"
+                        is-admin="user.isAdmin"
+                >
+                </contestorder-round-component>
+
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div>
+    <div style="height: 16px;" ng-style="{'background-color': $ctrl.heatRider.color}">&nbsp;</div>
+    <div class="table-rider-name">{{$ctrl.heatRider.rider.name | uppercase}}</div>
+</div>
+<table class="viewer-table">
+    <thead>
+        <tr>
+            <th ng-repeat="judge in $ctrl.judges">{{$ctrl.getJudgeName(judge, $index)}}</th>
+            <th>Result</th>
+            <th ng-if="$ctrl.enableLeftRightRule">L/R</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="tableScore in $ctrl.getViewableTableScores()"
+        ng-class="{'highlight-row' : tableScore.isHighScore, 'highlight-bad-row': tableScore.isInterference}">
+        <td ng-repeat="judgeScore in tableScore.judgeScores">
+            <span ng-if="$ctrl.isValidScoreValue(judgeScore.value)">{{judgeScore.value | number:2}}<span ng-if="judgeScore.isInterference">*</span></span>
+            <span ng-if="!$ctrl.isValidScoreValue(judgeScore.value)">-</span>
+        </td>
+        <td>{{tableScore[$ctrl.HIGH_SCORE_FIELD] | number:2}}</td>
+        <td class="wave-direction" ng-if="$ctrl.enableLeftRightRule">{{$ctrl.parseDirection(tableScore.direction)}}</td>
+    </tr>
+    </tbody>
+</table>

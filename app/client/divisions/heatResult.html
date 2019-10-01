@@ -1,0 +1,24 @@
+<div>
+    <div ng-if="!$ctrl.showHeader" class="division-subheader-heat">
+        <span style="font-weight: 100;">HEAT </span><strong><a href="#/heats/{{$ctrl.heat._id}}">{{$ctrl.heat.name}}</a></strong>
+
+        <a href="#/heats/{{$ctrl.heat._id}}"><i ng-if="$ctrl.heat.isActive" class="fa fa-eye"></i></a>
+        <a ng-if="$ctrl.isAdmin" href="#/heats/{{$ctrl.heat._id}}/edit"><i class="fa fa-cog"></i></a>
+    </div>
+
+    <div ng-repeat="rider in $ctrl.heat.riders" class="heat-result-rider-result">
+        <table style="height: 100%; width: 100%;">
+            <tr>
+                <td rowspan="2" style="width: 15px;" ng-style="{ 'background-color': rider.color }">&nbsp;</td>
+                <td rowspan="2" style="padding: 5px;">
+                    {{$ctrl.getRiderRank($ctrl.heat._id, rider.rider._id)}} <span class="heat-result-rider-name">{{rider.rider.name | uppercase}}</span>
+                </td>
+                <td class="heat-result-rider-total-label-cell">TOTAL</td>
+            </tr>
+            <tr>
+                <td class="heat-result-rider-total-value-cell">{{$ctrl.getTotalScoreForRider($ctrl.heat._id, rider.rider._id) | number:2}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

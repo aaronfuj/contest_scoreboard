@@ -1,0 +1,17 @@
+<div class="heat-header">
+    <table class="body-center" style="width: 100%;">
+        <tr>
+            <td>
+                <div class="heat-header-text"><span style="font-weight: 100;">HEAT </span> {{$ctrl.heat.name}}
+                    <a ng-if="$ctrl.user.isAdmin" ng-href="#/heats/{{$ctrl.heat._id}}/edit"><i class="fa fa-cog"></i></a>
+                </div>
+            </td>
+            <td>
+                <div class="heat-header-active-heat-info">
+                    <div>Round: <a ng-href="#/rounds/{{$ctrl.heat.round._id}}">{{$ctrl.heat.round.name}}</a></div>
+                    <div>Division: <a ng-href="#/divisions/{{$ctrl.heat.round.division._id}}">{{$ctrl.heat.round.division.name}}</a></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

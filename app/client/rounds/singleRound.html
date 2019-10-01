@@ -1,0 +1,50 @@
+<cs-loader ng-if="isLoading"></cs-loader>
+<div ng-if="!isLoading">
+    <div class="round-header">
+        <div class="body-center page-sub-header">
+            <table style="width: 100%;">
+                <tr>
+                    <td><span style="font-weight: 100;">ROUND </span>{{round.name}}</td>
+                    <td>
+                        <div class="heat-header-active-heat-info">
+                            <div>Division: <strong><a ng-href="#/divisions/{{round.division._id}}">{{round.division.name}}</a></strong></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="mgmt-content">
+        <div class="body-center">
+
+            <div style="padding: 5px;">
+                <div ng-repeat="heat in round.heats">
+                    <heat-result heat="heat"
+                                 top-results="resultsPerHeatId[heat._id]"
+                                 rider-ranks="riderRanksPerHeatId[heat._id]"
+                                 is-admin="user.isAdmin"
+                    >
+                    </heat-result>
+                    <div ng-if="user.isAdmin">
+                        <a href ng-click="removeHeat(heat._id)">
+                            <span>Delete {{heat.name}}? <i class="fa fa-trash"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions" ng-if="user.isAdmin">
+                <h2>Create a new heat</h2>
+                <form ng-submit="createHeat(heatName)">
+                    <div class="form-group">
+                        <label>Heat Name</label>
+                        <input type="text" class="form-control" name="round" ng-model="heatName" required>
+                    </div>
+
+                    <button class="btn round-button" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

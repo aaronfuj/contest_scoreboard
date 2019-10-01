@@ -1,0 +1,53 @@
+<!-- FORM -->
+<div class='rider-entry2' style="width: 100%; border:3px solid {{::$ctrl.heatRider.color}}; background-color: {{ ::$ctrl.getLighterColor($ctrl.heatRider.color, 0.8) }}">
+	<div class='rider-entry-name' id='riderName' style='background-color: {{::$ctrl.heatRider.color}}'>
+		<div class="rider-score-header-right">
+			<i class="fa fa-flag score-interference"
+			   aria-hidden="true"
+			   style="color: {{::$ctrl.textColor}}"
+			   ng-click="$ctrl.setDirection('none', true, 'minor'); $ctrl.submitScore();"></i>
+			<i class="fa fa-exclamation-triangle score-interference"
+			   aria-hidden="true"
+			   style="color: {{::$ctrl.textColor}}"
+			   ng-click="$ctrl.setDirection('none', true, 'major'); $ctrl.submitScore();"></i>
+		</div>
+		<div class="rider-score-header-left" style='color: {{::$ctrl.textColor}}'>{{::$ctrl.heatRider.rider.name}}</div>
+	</div>
+
+	<form ng-submit="$ctrl.submitScore()" style="padding: 5px">
+		<fieldset ng-disabled="$ctrl.isSendingScore()">
+			<div class="score-input-right">
+				<table>
+					<tr>
+						<td rowspan="2" style="padding: 0;">
+							<input type="number" ng-disabled="$ctrl.isSendingScore()" ng-model="$ctrl.currentValue"
+								   ng-focus="$ctrl.clearScore()" ng-blur="$ctrl.validateScoreOnBlur()"
+								   class="rider-score-input2" min="0" max="10" step="0.1" placeholder="Score" required>
+						</td>
+						<td class="rider-score-value-minor-adjust" ng-click="$ctrl.incrementValue()">
+							<i class="fa fa-plus"></i>
+						</td>
+					</tr>
+					<tr>
+						<td class="rider-score-value-minor-adjust" ng-click="$ctrl.decrementValue()">
+							<i class="fa fa-minus"></i>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="score-input-left">
+				<rzslider
+						rz-slider-model="$ctrl.currentValue"
+						rz-slider-options="$ctrl.sliderOptions"></rzslider>
+
+				<div class="rider-entry-buttons-group">
+					<button ng-if="$ctrl.enableLeftRightRule" ng-disabled="$ctrl.isSendingScore()" type="submit" ng-click="$ctrl.setDirection('left')" class="rider-entry-button" style="margin-right: 5px;">Left</button>
+					<button ng-if="$ctrl.enableLeftRightRule" ng-disabled="$ctrl.isSendingScore()" type="submit" ng-click="$ctrl.setDirection('right')" class="rider-entry-button" style="margin-left: 5px;">Right</button>
+					<button ng-if="!$ctrl.enableLeftRightRule" ng-disabled="$ctrl.isSendingScore()" type="submit" ng-click="$ctrl.setDirection('none')" class="rider-entry-full-button">Submit</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>

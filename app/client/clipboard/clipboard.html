@@ -1,0 +1,94 @@
+<div ng-show='hasToast' class='notification' style='background-color: {{toast.color}};'>
+	<span ng-bind-html="toast.message"></span>
+</div>
+
+<div class="clipboard-judge-credentials">
+	<span ng-if="user">Logged in as <strong>{{user.username}}</strong>, <a href="/logout">Log out</a></span>
+</div>
+
+<div ng-if="!activeHeats || activeHeats.length === 0" class="no-active-heats">
+	<div class="no-active-heats-icon"><i class="fa fa-eye-slash"></i></div>
+	<span>There are no live heats at the moment.</span>
+</div>
+
+<div ng-repeat="heat in activeHeats">
+
+	<div>
+		<table class="clipboard-current-active-heat">
+			<tr>
+				<td class="current-active-heat-time">
+					<span class="current-active-heat-time-label">TIME: </span><strong>{{heat.timerValue}}</strong>
+				</td>
+				<td class="current-active-heat-info">
+					<div>Heat: <a ng-href="#/heats/{{heat._id}}">{{::heat.name}}</a></div>
+					<div>Round: <a ng-href="#/rounds/{{heat.round._id}}">{{::heat.round.name}}</a></div>
+					<div>Division: <a ng-href="#/divisions/{{heat.round.division._id}}">{{::heat.round.division.name}}</a></div>
+				</td>
+			</tr>
+		</table>
+
+		<div style="clear: both;">
+
+		</div>
+	</div>
+
+	<div class="rider-entry-container">
+
+        <rider-score-entry ng-repeat="rider in ::heat.riders"
+            user-id="userId"
+            heat="heat"
+            heat-rider="rider"
+            last-wave-number="waveNumberPerRider[rider.rider._id]"
+            enable-left-right-rule="enableLeftRightRule"
+            on-submit="handleEntrySubmit(results, rider)"
+
+            style="width: 100%;"
+        >
+        </rider-score-entry>
+
+	</div>
+
+	<div class="clipboard-current-scores">
+
+		<div ng-repeat="rider in ::heat.riders">
+
+			<!-- Rider name row -->
+			<div class="container-fluid" style="border:1px solid black; overflow: hidden; margin: 5px">
+				<div class="row" style="background-color: {{rider.color}};">
+					<div class="col-xs-12 rider-entry-name" style="border:1px solid black; color: {{::rider.textColor}}">{{::rider.rider.name | uppercase}}</div>
+				</div>
+
+				<!-- Left/Right Header Divs -->
+				<div ng-show="enableLeftRightRule" class="row" style="background-color: lightgray;">
+					<div class="col-xs-6" style="border:1px solid black;">LEFT</div>
+					<div class="col-xs-6" style="border:1px solid black;">RIGHT</div>
+				</div>
+
+				<!-- All the scores -->
+				<div class="row" style="background-color: white;">
+					<div ng-show="enableLeftRightRule" class="col-xs-6" id="direction1" style="padding: 0px; border:1px solid black;">
+						<div ng-repeat="score in getScores(rider.rider._id, 'left')" class="col-xs-3 col-sm-3 col-md-2 clipboard-single-score" style="padding: 0px;">
+							<a ng-if="user.isAdmin" ng-href="/app/#/scores/{{score._id}}">{{score.value}}</a>
+							<span ng-if="!user.isAdmin">{{score.value}}</span>
+						</div>
+
+					</div>
+					<div ng-show="enableLeftRightRule" class="col-xs-6" id="direction2" style="padding: 0px; border:1px solid black;">
+						<div ng-repeat="score in getScores(rider.rider._id, 'right')" class="col-xs-3 col-sm-3 col-md-2 clipboard-single-score" style="padding: 0px;">
+							<a ng-if="user.isAdmin" ng-href="/app/#/scores/{{score._id}}">{{score.value}}</a>
+							<span ng-if="!user.isAdmin">{{score.value}}</span>
+						</div>
+					</div>
+					<div ng-hide="enableLeftRightRule" class="col-xs-12" id="direction0" style="padding: 0px; border:1px solid black;">
+						<div ng-repeat="score in getScores(rider.rider._id)" class="col-xs-3 col-sm-3 col-md-2 clipboard-single-score" style="padding: 0px;">
+							<a ng-if="user.isAdmin" ng-href="/app/#/scores/{{score._id}}">{{score.value}}</a>
+							<span ng-if="!user.isAdmin">{{score.value}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,61 @@
+<div class="active-heats-header">
+    <div class="body-center page-sub-header">Active Heat(s)</div>
+</div>
+
+<div class="mgmt-content">
+    <div class="body-center" style="padding: 0 5px;">
+
+
+
+
+        <!-- Show all of the heats that are 'active' and provide the means to change or remove the heat -->
+        <div style="padding-bottom: 10px; border-bottom: 1px dotted #000000;" ng-repeat="heat in heats">
+
+
+            <heat-view-result-header
+                    heat="heat"
+            >
+            </heat-view-result-header>
+            <div ng-repeat="rider in heat.riders" class="heat-result-rider-result">
+                <table style="height: 100%; width: 100%;">
+                    <tr>
+                        <td style="width: 15px;" ng-style="{ 'background-color': rider.color }">&nbsp;</td>
+                        <td style="padding: 5px;">
+                            <span class="heat-result-rider-name">{{rider.rider.name | uppercase}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <table style="width: 100%; padding-bottom: 10px;">
+                <td style="width: 35%; padding-right: 5px;">
+                    <a href="#/heats/{{heat._id}}" class="btn active-heats-button" style="width: 100%;"><i class="fa fa-table"></i> View Heat</a>
+                </td>
+                <td style="width: 30%; ">
+                    <a href="#/heats/{{heat._id}}/edit" class="btn active-heats-button" style="width: 100%;"><i class="fa fa-cog"></i> Edit Heat</a>
+                </td>
+                <td style="width: 35%; padding-left: 5px;">
+                    <button class="btn active-heats-button" style="width: 100%;" ng-click="remove(heat._id)" ng-if="user.isAdmin">
+                        <i class="fa fa-ban"></i> Disable Heat
+                    </button>
+                </td>
+            </table>
+
+        </div>
+
+        <div class="actions">
+            <form ng-submit="addHeat(selectedHeat)">
+                <div class="form-group">
+                    <label>Add Another Running Heat</label>
+                    <select ng-model="selectedHeat"
+                            ng-options="heat.formattedName group by heat.round.division.name disable when heat.isActive for heat in allHeats"
+                            ng-disabled="!user.isAdmin"
+                            required>
+                        <option value="">Select Heat</option>
+                    </select>
+                    <button type="submit" class="btn active-heats-button" ng-disabled="!user.isAdmin">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

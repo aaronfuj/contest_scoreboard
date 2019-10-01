@@ -1,0 +1,80 @@
+Terminology
+
+- Division
+A category in which riders may compete
+
+- Round
+A collection of heats which have all progressed to the same state of competition
+and are all within a particular division
+
+- Heat
+A specific grouping of riders which will compete against each other
+during the same time
+
+- Rider
+An individual competing in the contest
+
+- Judge
+An individual using the application scoreboard to rate and score the different
+riders within the contest
+
+- Contest Director
+An individual organizing, managing, and running the contest
+
+- Score card / Score sheet
+A set of scores for a judge for a specific heat.
+
+================================================================================
+UST (Original)
+================================================================================
+The scoring system used by one judge will not affect another judge.
+
+- Heat Calculation
+Each judge individually scores each rider during the heat. Once the heat is over
+the top N scores are used per rider per judge and summed together.
+
+In the event of a left/right rule, the top scores will be based on the direction
+rather than overall score. When N is odd, then the highest score will come from
+whichever direction has the highest overall sum.
+
+Using the sum per rider, we can then rank each rider within the judges
+score card. Each rider is given a rank starting with 1 as the highest scoring
+rider and incrementing by 1 for the next rider. In the event that the scores
+between riders are the same, the average value of the rank between the tied
+riders is used. For example, with 3 riders tied starting in second place, so the
+shared rank is 2+3+4/3 = 2. In the event that 2 riders were tied starting in
+second place, each of their rank values would be 2+3/2 = 2.5.
+
+Using the rider ranks for a judge's score sheet, we then sum all of the rider
+ranks across all the different judges. The riders may now be ordered by their
+cumulative rank where the lowest rank is the highest placing rider.
+
+- Round Calculation
+The following heat to which a rider advances (or falls to) may be
+pre-determined based on the current heat he/she is in. This is often known as
+using a pre-defined bracket system.
+
+A secondary option is that all heats within a round are compared against each
+other and all the riders which will advance have their absolute total score
+used as a ranking system for that round.
+
+--------------------------------------------------------------------------------
+================================================================================
+ASP
+================================================================================
+
+
+--------------------------------------------------------------------------------
+================================================================================
+Dashboard Skimboards
+================================================================================
+- Heat Calculation
+Each judge individually scores each rider during the heat. The riders rank in
+the heat is determined purely by summing all of the scores associated with this
+rider from all of the judges together. The highest scores determine the highest
+placing riders.
+
+- Round Calculation
+
+
+--------------------------------------------------------------------------------
