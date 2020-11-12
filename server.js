@@ -24,7 +24,13 @@ var io       = require('socket.io')(server);
 var sessionSecret = require('./config/sessionSecret').secret;
 
 // configuration ===============================================================
-mongoose.connect(process.env.MONGODB_URI || configDB.url); // connect to our database
+mongoose.connect(
+    process.env.MONGODB_URI || configDB.url,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
