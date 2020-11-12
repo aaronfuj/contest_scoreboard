@@ -35,7 +35,8 @@
     "build": "NODE_ENV=production webpack --hide-modules --config webpack.production.config.js",
     "start": "NODE_ENV=development node server.js",
     "seedusers": "NODE_ENV=development node seed_users.js",
-    "start:production": "NODE_ENV=production node server.js"
+    "start:production": "NODE_ENV=production node server.js",
+    "start:heroku": "node server.js"
   },
   "devDependencies": {
     "jasmine": "^2.4.1",
