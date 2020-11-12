@@ -2,7 +2,7 @@
   "name": "node-authentication",
   "main": "server.js",
   "dependencies": {
-    "angular": "~1.5.11",
+    "angular": "~1.8.0",
     "angular-route": "~1.5.11",
     "angular-touch": "~1.5.11",
     "bcryptjs": "^2.4.3",
